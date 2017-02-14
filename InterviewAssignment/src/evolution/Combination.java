@@ -1,26 +1,26 @@
 package evolution;
 
 public class Combination {
-	public static void permutation(int i, int m, int n, int[] combination) {
+	public static void combination(int i, int m, int n, int[] combination) {
 		if (combination == null) {
 			combination = new int[m];
 		}
-		if (i < m) {
-			for (int j = 0; j < n; j++) {
-				if (i == 0 || j > combination[i - 1]) {
+		if (i < m) {// There are m layers.
+			for (int j = 0; j < n; j++) {// Each layer has n choices.
+				if (i == 0 || j > combination[i - 1]) {// The choice in the next layer should be greater than the one in the previous layer.
 					combination[i] = j;
-					permutation(i + 1, m, n, combination);
+					combination(i + 1, m, n, combination);
 				}
 			}
 		} else {
 			for (int j = 0; j < m; j++) {
-				System.out.print(combination[j]);
+				System.out.print(combination[j]);// Print out the combination.
 			}
 			System.out.println();
 		}
 	}
 	
 	public static void main(String[] args) {
-		permutation(0, 2, 7, null);
+		combination(0, 3, 7, null);
 	}
 }
