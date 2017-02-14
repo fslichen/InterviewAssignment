@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class SortMapValue {
 	public static List<Entry<String, Integer>> sort(Map<String, Integer> map) {
@@ -20,6 +21,12 @@ public class SortMapValue {
 		return list;
 	}	
 	
+	public static List<Entry<String, Integer>> sortByStream(Map<String, Integer> map) {
+		List<Entry<String, Integer>> list = new LinkedList<>(map.entrySet());
+		// Descending Sort
+		return list.stream().sorted((x, y) -> y.getValue().compareTo(x.getValue())).collect(Collectors.toList());
+	}
+	
 	public static void main(String[] args) {
 		Map<String, Integer> map = new LinkedHashMap<>();
 		map.put("Java", 84);
@@ -30,5 +37,6 @@ public class SortMapValue {
 		map.put("Perl", 37);
 		map.put("Pascal", 34);
 		System.out.println(sort(map));
+		System.out.println(sortByStream(map));
 	}
 }
